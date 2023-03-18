@@ -24,7 +24,14 @@ contract KnowledgeTest {
     // ubah state variable
     // karena ubah state variable, maka ada gas fee
     function changeTokens() public {
+        // ubah langsung state variablenya
         tokens[0] = "VET";
+
+        // atau bisa dilakukan dengan ini
+        // tampung dulu di storage, kemudian ubah nilainya
+        // storage artinya terhubung dengan state variable di blockchain
+        // string[] storage t = tokens;
+        // t[0] = "VET";
     }
 
     // mendapatkan info ether pada wallet
@@ -37,7 +44,11 @@ contract KnowledgeTest {
     // transfer semua balance owner ke receiver
     function transferAll(address receiver) public {
         require(msg.sender == owner, "ONLY_OWNER");
-        payable(receiver).transfer(getBalance());
+        //payable(receiver).transfer(getBalance()); => Jawaban salah
+
+        // kalau mau transfer sekarang pakai fungsi ini:
+        (bool result, ) = receiver.call{value: getBalance()}("");
+        require(result, "TX_FAILED");
     }
 
     // fungsi sederhana untuk menggabungkan 2 string
