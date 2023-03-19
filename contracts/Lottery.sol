@@ -7,6 +7,7 @@ import "hardhat/console.sol";
 // Pada kontrak ini diproteksi yang bisa akses getBalance() dan pickWinner() hanya address yang deploy kontrak ini
 // getBalance() ini untuk cek saldo eth di address kontrak
 // address lain hanya bisa connect dan transfer eth ke address kontrak ini
+// Smart Contract adalah satu entintas
 // Alamat smart contract ini tidak dimiliki oleh orang yang melakukan deploy, namun dimiliki oleh kontrak itu sendiri.
 contract Lottery {
     // declaring the state variables
